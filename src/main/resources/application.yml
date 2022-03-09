@@ -1,0 +1,17 @@
+swagger:
+  enabled: true #true 表明可以显示swagger
+spring:
+  profiles:
+    active: dev
+  config:
+    import: classpath:febs.yml
+server:
+  port: 8221
+  servlet:
+    context-path: /caoqiong
+
+minio:
+  Url: http://116.62.165.204:9000
+  AccessKey: minioadmin
+  SecretKey: minioadmin
+

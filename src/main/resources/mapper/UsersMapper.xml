@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.zuche.users.dao.UsersMapper">
+
+
+    <select id="getAll" resultType="com.example.zuche.users.pojo.Users">
+        select * from users
+    </select>
+    <select id="getByAge" resultType="com.example.zuche.users.pojo.Users">
+
+        select * from users where  age &gt; #{age}
+
+
+    </select>
+    <select id="selectCountList" resultType="java.lang.Integer">
+
+        select  count(*) from users GROUP BY phone HAVING (count(*) >1 )
+
+
+    </select>
+</mapper>
