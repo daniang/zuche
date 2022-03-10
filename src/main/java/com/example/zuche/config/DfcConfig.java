@@ -14,5 +14,5 @@ import org.springframework.jmx.support.RegistrationPolicy;
 //Jmx重复注册bean的问题
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 public class DfcConfig {
-
+    /*测试代码*/
 }
