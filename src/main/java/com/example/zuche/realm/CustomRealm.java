@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
  * @Author : chengzhang
  * @Date : 2021/12/27 11:25
  */
-@Component
+//@Component
 public class CustomRealm extends AuthorizingRealm {
 
 

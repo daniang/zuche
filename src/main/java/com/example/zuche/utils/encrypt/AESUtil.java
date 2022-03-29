@@ -1,5 +1,7 @@
 package com.example.zuche.utils.encrypt;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -9,6 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
  * @Author : chengzhang
  * @Date : 2022/3/17 16:43
  */
+@Slf4j
 public class AESUtil {
 
     public static final String algorithm = "AES";
@@ -42,9 +45,39 @@ public class AESUtil {
         return Base64Util.encrytBASE64(bytes);
     }
 
-    public static String decrytByAES(String encrypted){
+    /**
+     * 解密
+     * @param encrypted 需要解密的参数
+     * @return
+     * @throws Exception
+     */
+    public static String decrytByAES(String encrypted) throws Exception{
+        //获取Cipher
+        Cipher cipher = Cipher.getInstance(transformation);
 
-        return null;
+        //生成密钥
+        SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(),algorithm);
+        //指定模式(解密)和密钥
+        //创建初始化向量
+        IvParameterSpec iv = new IvParameterSpec(key.getBytes());
+        cipher.init(Cipher.DECRYPT_MODE,keySpec,iv);
+        //解密
+        byte[] bytes = cipher.doFinal(Base64Util.decryBASE64(encrypted));
+
+
+        return new String(bytes);
+    }
+
+    public static void main(String[] args) throws Exception {
+        String str = "ILoveYouILoveYou";
+
+        String encryptByAES = encryptByAES(str);
+        log.info("encryptByAES = {}" ,encryptByAES);
+
+        String decrytByAES = decrytByAES(encryptByAES);
+        log.info("decryByAes = {}" ,decrytByAES);
+
+
     }
 
 }

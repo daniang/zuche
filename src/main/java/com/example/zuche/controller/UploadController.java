@@ -1,6 +1,7 @@
 package com.example.zuche.controller;
 
 import cn.hutool.http.HttpResponse;
+import cn.hutool.http.HttpUtil;
 import com.example.zuche.utils.FastDfsUtils;
 import com.example.zuche.utils.MinioUtils;
 import com.example.zuche.vo.ResultVo;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("upload")
@@ -91,5 +93,21 @@ public class UploadController {
         return ResultVo.success(minioUtils.getUrl());
 
     }
+
+    @GetMapping("/shiPing")
+    public ResultVo<String> shiPing( Integer streamType,Integer channelNo,Integer dataType) {
+        log.info("shiPing参数{},{},{}",streamType,channelNo,dataType);
+        String post = HttpUtil.post("http://172.30.1.104:3014/api/video/pull?deviceId=013304521793&ip=120.202.27.102&port=9918&channelNo="+channelNo+"&dataType="+dataType+"&streamType="+streamType, new HashMap<>());
+        System.out.println(post);
+        return ResultVo.success(post);
+
+    }
+    @GetMapping("/shiPing2")
+    public ResultVo<String> shiPing2(Integer streamType ) {
+        String post = HttpUtil.post("http://172.30.1.104:3014/api/video/pull?deviceId=013304521793&ip=120.202.27.102&port=9918&channelNo=2&dataType=0&streamType=0", new HashMap<>());
+        return ResultVo.success(post);
+
+    }
+
 
 }

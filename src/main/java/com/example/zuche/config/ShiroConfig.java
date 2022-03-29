@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * @Date : 2021/12/27 14:39
  */
 //暂时 解除shiro配置
-@Configuration
+//@Configuration
 public class ShiroConfig {
 
 //    //将自己的验证方式加入容器
