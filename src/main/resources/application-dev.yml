@@ -10,6 +10,12 @@ spring:
           password: cq520221
           url: jdbc:mysql://116.62.165.204:3306/study?useUnicode=false&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
           driver-class-name: com.mysql.cj.jdbc.Driver
+        postgresql:
+          #PostgreSQL配置
+          url: jdbc:postgresql://127.0.0.1:5432/postgres
+          username: postgres
+          password: Cq520221
+          driver-class-name: org.postgresql.Driver
       druid:
         initial-size: 1
         max-active: 20

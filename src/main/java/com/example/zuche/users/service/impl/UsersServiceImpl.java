@@ -1,6 +1,8 @@
 package com.example.zuche.users.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.zuche.config.DSConfig;
 import com.example.zuche.permission.dao.PermissionsMapper;
 import com.example.zuche.permission.dao.RoleMapper;
 import com.example.zuche.permission.dao.RolePermissionsMapper;
@@ -74,7 +76,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
         List<Role> roles = roleMapper.selectBatchIds(roleIds);
 
-        Set<Role> roleSet    = roles.stream().collect(Collectors.toSet());
+        Set<Role> roleSet = roles.stream().collect(Collectors.toSet());
 
 
         for (Role role : roleSet) {

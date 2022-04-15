@@ -12,4 +12,6 @@ public class DSConfig {
 
 
     public final static String STUDY = "study";
+
+    public final static String POSTGRESQL = "postgresql";
 }

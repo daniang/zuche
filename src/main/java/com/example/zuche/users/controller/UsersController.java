@@ -100,5 +100,13 @@ public class UsersController {
 
     }
 
+
+    @GetMapping("/testPost")
+    public Void testPost(Users users) {
+
+
+        return null;
+
+    }
 }
 

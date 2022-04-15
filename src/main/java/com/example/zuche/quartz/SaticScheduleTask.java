@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.LocalDateTime;
+
 /**
  * @desc :
  * @Author : chengzhang
@@ -20,7 +22,7 @@ public class SaticScheduleTask {
     //或直接指定时间间隔，例如:5秒
 //    @Scheduled(fixedRate = 5000)
     private void configureTasks() {
-        log.info("执行定时任务");
+        log.info("执行定时任务{}", LocalDateTime.now());
     }
 
 
