@@ -2,4 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.zuche.refondmoney.dao.RefondMoneyMapper">
 
+
+    <select id="getAllMap" resultMap="genderCount">
+
+        select is_fond , count(1) count from refond_money group by is_fond
+
+
+    </select>
+
+    <resultMap id="genderCount" type="java.util.HashMap">
+        <result column="is_fond" property="key" javaType="java.lang.String" />
+        <result column="count" property="value" javaType="java.lang.Object" />
+    </resultMap>
 </mapper>

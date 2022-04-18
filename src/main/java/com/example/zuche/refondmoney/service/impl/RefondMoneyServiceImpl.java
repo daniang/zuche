@@ -22,6 +22,7 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -43,6 +44,28 @@ public class RefondMoneyServiceImpl extends ServiceImpl<RefondMoneyMapper, Refon
 
     @Override
     public List<RefondMoneyVo> getList() {
+        List<Map<String,Object>> map1 = this.getBaseMapper().getAllMap();
+
+        Map<String, Long> genderCount = new HashMap<>();
+
+        for (Map<String,Object> kv : map1) {
+
+            String key = null;
+            Long value = null;
+
+            for (Map.Entry<String ,Object> entry : kv.entrySet()) {
+                if (entry.getKey().equals("key")) {
+                    key =   (String) entry.getValue();
+                }else {
+                    value = (Long)entry.getValue();
+                }
+            }
+            genderCount.put(key,value);
+        }
+
+
+
+
         List<RefondMoney> refondMonies = this.list();
         List<String> collect = refondMonies.stream().map(x -> x.getEventId()).distinct().collect(Collectors.toList());
         List<Event> events1 = CommonUtils.emptyCondThenReturnEmptyList(collect, () -> {
