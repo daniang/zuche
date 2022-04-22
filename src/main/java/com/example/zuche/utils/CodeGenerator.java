@@ -65,10 +65,10 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://116.62.165.204:3306/study?useUnicode=true&characterEncoding=utf8");
-        dsc.setDriverName("com.p6spy.engine.spy.P6SpyDriver");
-        dsc.setUsername("root");
-        dsc.setPassword("cq520221");
+        dsc.setUrl("jdbc:postgresql://127.0.0.1:5432/postgres?useUnicode=true&characterEncoding=utf8");
+        dsc.setDriverName("org.postgresql.Driver");
+        dsc.setUsername("postgres");
+        dsc.setPassword("Cq520221");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -130,7 +130,7 @@ public class CodeGenerator {
         //strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         //需要包含的表名，允许正则表达式
 //        strategy.setInclude(scanner("表名"));
-        strategy.setInclude("account");
+        strategy.setInclude("user_test");
         //自定义基础的Entity类，公共字段
         //strategy.setSuperEntityColumns("id");
         //驼峰转连字符

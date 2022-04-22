@@ -7,7 +7,6 @@ import lombok.Data;
  * @Author : chengzhang
  * @Date : 2022/3/8 11:29
  */
-@Data
 public class DSConfig {
 
 

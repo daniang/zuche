@@ -1,9 +1,13 @@
 package com.example.zuche.users.controller;
 
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.example.zuche.myexception.BizException;
+import com.example.zuche.postgresql.pojo.UserTest;
+import com.example.zuche.postgresql.service.IUserTestService;
 import com.example.zuche.users.dto.UserDto;
 import com.example.zuche.users.pojo.Users;
+import com.example.zuche.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +17,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +35,10 @@ import java.util.List;
 @Slf4j
 public class UsersController {
 
+
+    @Resource
+
+    private IUserTestService userTestService;
 
     @ApiOperation("登录")
     @PostMapping("/login")
@@ -102,11 +111,12 @@ public class UsersController {
 
 
     @GetMapping("/testPost")
-    public Void testPost(Users users) {
+    public ResultVo<List<UserTest>> testPost(Users users) {
 
 
+        List<UserTest> list = userTestService.list();
 
-        return null;
+        return ResultVo.success(list);
 
     }
 }

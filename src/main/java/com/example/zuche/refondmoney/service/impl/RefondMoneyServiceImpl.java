@@ -22,6 +22,7 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,28 +43,65 @@ public class RefondMoneyServiceImpl extends ServiceImpl<RefondMoneyMapper, Refon
     IEventService eventService;
 
 
-    @Override
-    public List<RefondMoneyVo> getList() {
-        List<Map<String,Object>> map1 = this.getBaseMapper().getAllMap();
+    public static void main(String[] args) {
+        List<Map<String, String>> maps = new ArrayList<>();
 
-        Map<String, Long> genderCount = new HashMap<>();
+        Map<String, String> map1 = new HashMap<>();
 
-        for (Map<String,Object> kv : map1) {
+        map1.put("hello1 ", "world1");
+
+        map1.put("hello2", "world2");
+
+        maps.add(map1);
+
+        Map<String, String> map2 = new HashMap<>();
+
+        map2.put("hello3", "world3");
+
+        map2.put("hello4", "world4");
+        maps.add(map2);
+
+
+        Map<String, String> map5 = new HashMap<>();
+
+        for (Map<String, String> kv : maps) {
 
             String key = null;
-            Long value = null;
+            String value = null;
 
-            for (Map.Entry<String ,Object> entry : kv.entrySet()) {
-                if (entry.getKey().equals("key")) {
-                    key =   (String) entry.getValue();
-                }else {
-                    value = (Long)entry.getValue();
-                }
+            for (Map.Entry<String, String> entry : kv.entrySet()) {
+
+                key = entry.getKey();
+                value = entry.getValue();
+                map5.put(key, value);
             }
-            genderCount.put(key,value);
         }
 
+        System.out.println(map5);
+    }
 
+    @Override
+    public List<RefondMoneyVo> getList() {
+        List<Map<String, Object>> map1 = this.getBaseMapper().getAllMap();
+
+        Map<String, Integer> genderCount = new HashMap<>();
+
+        for (Map<String, Object> kv : map1) {
+
+            String key = null;
+            Integer value = null;
+
+            for (Map.Entry<String, Object> entry : kv.entrySet()) {
+                if (entry.getKey().equals("key")) {
+
+//                    entry.getKey();
+                    key = (String) entry.getValue();
+                } else {
+                    value = ((Long) entry.getValue()).intValue();
+                }
+            }
+            genderCount.put(key, value);
+        }
 
 
         List<RefondMoney> refondMonies = this.list();
