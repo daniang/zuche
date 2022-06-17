@@ -108,6 +108,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * 对有序集合类型的数据操作
+     *
      * @param redisTemplate
      * @return
      */

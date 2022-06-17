@@ -103,7 +103,7 @@ public class MinioUtils {
      * @param file
      */
     @SneakyThrows(Exception.class)
-    public void upload(MultipartFile file, String bucketName,String folder) {
+    public void upload(MultipartFile file, String bucketName, String folder) {
         createBucket(bucketName);
         init();
         String fileName = file.getOriginalFilename();
@@ -112,21 +112,16 @@ public class MinioUtils {
 //        String object = name + LocalDateTime.now() + "." + type;
         if (!StringUtils.isEmpty(folder)) {
             minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).
-                    object(folder+"/"+fileName).stream(file.getInputStream(), -1, 10485760).contentType(file.getContentType()).build());
-        }else{
+                    object(folder + "/" + fileName).stream(file.getInputStream(), -1, 10485760).contentType(file.getContentType()).build());
+        } else {
             minioClient.putObject(PutObjectArgs.builder().bucket(bucketName).
                     object(fileName).stream(file.getInputStream(), -1, 10485760).contentType(file.getContentType()).build());
         }
 
 
-
-
 //        minioClient.uploadObject(UploadObjectArgs.builder().bucket(BucketName).object(fileName+ LocalDateTime.now()).filename("C:\\Users\\Administrator\\Desktop\\"+fileName).build());
 
     }
-
-
-
 
 
     @SneakyThrows
@@ -178,7 +173,7 @@ public class MinioUtils {
 
 
     @SneakyThrows
-    public String getUrl(){
+    public String getUrl() {
         Map<String, String> reqParams = new HashMap<String, String>();
         reqParams.put("response-content-type", "application/json");
 
@@ -193,11 +188,6 @@ public class MinioUtils {
         return url;
 
     }
-
-
-
-
-
 
 
     public static void main(String[] args) throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, ErrorResponseException {
@@ -215,13 +205,13 @@ public class MinioUtils {
          */
 
         String url = minioClient.getPresignedObjectUrl(
-                        GetPresignedObjectUrlArgs.builder()
-                                .method(Method.GET)
-                                .bucket("images")
-                                .object("IMG_6336.jpg")
-                                .expiry(2, TimeUnit.HOURS)
-                                .extraQueryParams(reqParams)
-                                .build());
+                GetPresignedObjectUrlArgs.builder()
+                        .method(Method.GET)
+                        .bucket("images")
+                        .object("IMG_6336.jpg")
+                        .expiry(2, TimeUnit.HOURS)
+                        .extraQueryParams(reqParams)
+                        .build());
         System.out.println(url);
 
     }

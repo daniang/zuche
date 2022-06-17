@@ -117,11 +117,12 @@ public class MD5Util {
 
     /**
      * 效验密码与其MD5是否一致
+     *
      * @param pwd pwd  密码字符串
      * @param md5 基准MD5值
      * @return 检验结果
      */
-    public static boolean checkPassword(String pwd , String md5){
+    public static boolean checkPassword(String pwd, String md5) {
         return getMD5String(pwd).equalsIgnoreCase(md5);
     }
 
@@ -129,8 +130,7 @@ public class MD5Util {
     /**
      * 将字节数组转换成16进制字符串
      *
-     * @param bytes
-     *            目标字节数组
+     * @param bytes 目标字节数组
      * @return 转换结果
      */
     public static String bytesToHex(byte bytes[]) {
@@ -140,17 +140,14 @@ public class MD5Util {
     /**
      * 将字节数组中指定区间的子数组转换成16进制字符串
      *
-     * @param bytes
-     *            目标字节数组
-     * @param start
-     *            起始位置（包括该位置）
-     * @param end
-     *            结束位置（不包括该位置）
+     * @param bytes 目标字节数组
+     * @param start 起始位置（包括该位置）
+     * @param end   结束位置（不包括该位置）
      * @return 转换结果
      */
     public static String bytesToHex(byte bytes[], int start, int end) {
         StringBuilder sb = new StringBuilder();
-        for (int i = start; i < start + end; i++ ) {
+        for (int i = start; i < start + end; i++) {
             sb.append(byteToHex(bytes[i]));
         }
         return sb.toString();
@@ -159,8 +156,7 @@ public class MD5Util {
     /**
      * 将单个字节码转换成16进制字符串
      *
-     * @param bt
-     *            目标字节
+     * @param bt 目标字节
      * @return 转换结果
      */
     public static String byteToHex(byte bt) {
@@ -171,7 +167,7 @@ public class MD5Util {
     /**
      * base64+md5双重加密
      * @param str 待加密字符串
-     * @return  加密后的字符串
+     * @return 加密后的字符串
      */
 //    public static String md5EncryptBase64(String str){
 //        //先进行MD5加密,加密完成字符串继续进行base64加密。

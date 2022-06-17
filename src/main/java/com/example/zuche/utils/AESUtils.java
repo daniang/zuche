@@ -42,27 +42,30 @@ public class AESUtils {
 
     /**
      * base 64 encode
+     *
      * @param bytes 待编码的byte[]
      * @return 编码后的base 64 code
      */
-    private static String base64Encode(byte[] bytes){
+    private static String base64Encode(byte[] bytes) {
         return Base64.encodeBase64String(bytes);
     }
 
     /**
      * base 64 decode
+     *
      * @param base64Code 待解码的base 64 code
      * @return 解码后的byte[]
      * @throws Exception 抛出异常
      */
-    private static byte[] base64Decode(String base64Code) throws Exception{
+    private static byte[] base64Decode(String base64Code) throws Exception {
         return StringUtils.isEmpty(base64Code) ? null : new BASE64Decoder().decodeBuffer(base64Code);
     }
 
 
     /**
      * AES加密
-     * @param content 待加密的内容
+     *
+     * @param content    待加密的内容
      * @param encryptKey 加密密钥
      * @return 加密后的byte[]
      */
@@ -79,7 +82,7 @@ public class AESUtils {
     /**
      * AES加密为base 64 code
      *
-     * @param content 待加密的内容
+     * @param content    待加密的内容
      * @param encryptKey 加密密钥
      * @return 加密后的base 64 code
      */
@@ -91,7 +94,7 @@ public class AESUtils {
      * AES解密
      *
      * @param encryptBytes 待解密的byte[]
-     * @param decryptKey 解密密钥
+     * @param decryptKey   解密密钥
      * @return 解密后的String
      */
     private static String aesDecryptByBytes(byte[] encryptBytes, String decryptKey) throws Exception {

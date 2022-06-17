@@ -28,9 +28,6 @@ public class MD5Util {
         byte[] bytes = encryMD5(str.getBytes());
 
 
-
-
-
         String s = new String(bytes);
 
         log.info("s = {}", s);

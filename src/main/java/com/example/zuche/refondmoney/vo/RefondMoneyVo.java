@@ -5,7 +5,9 @@ import com.example.zuche.refondmoney.enums.FondMoneyEnum;
 import com.example.zuche.refondmoney.pojo.RefondMoney;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
@@ -18,6 +20,8 @@ import java.util.Map;
  */
 @Data
 @ApiModel("礼钱信息")
+@AllArgsConstructor
+@NoArgsConstructor
 public class RefondMoneyVo {
 
     @ApiModelProperty("人名")

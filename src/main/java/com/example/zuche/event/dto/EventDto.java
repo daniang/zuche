@@ -16,7 +16,6 @@ import org.hibernate.validator.constraints.Length;
 public class EventDto extends BaseRequest {
 
     @ApiModelProperty("事件名称")
-    @Length(max = 3)
     private String eventName;
 
 

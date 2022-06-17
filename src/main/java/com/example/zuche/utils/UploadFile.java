@@ -26,7 +26,7 @@ public class UploadFile {
     @Test
     public void test() throws IOException {
         String data = "C:\\Users\\Administrator\\Desktop\\helloworld.txt";
-        File file2 = new File( data);
+        File file2 = new File(data);
         String url2 = uploadFile(file2);
         System.out.println(url2);
     }

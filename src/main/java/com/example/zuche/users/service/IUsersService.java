@@ -7,14 +7,13 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author chengzhang
  * @since 2021-12-16
  */
 public interface IUsersService extends IService<Users> {
-
 
 
     List<Users> getAll();
@@ -25,7 +24,6 @@ public interface IUsersService extends IService<Users> {
 
 
     Integer testUsers();
-
 
 
 }

@@ -24,69 +24,69 @@ public class CommonUtils {
         Object[] var1 = info;
         int var2 = info.length;
 
-        for(int var3 = 0; var3 < var2; ++var3) {
+        for (int var3 = 0; var3 < var2; ++var3) {
             Object param = var1[var3];
             if (param instanceof Integer) {
-                Integer var5 = (Integer)param;
+                Integer var5 = (Integer) param;
             } else if (param instanceof String) {
-                String s = (String)param;
+                String s = (String) param;
                 if (StringUtils.isBlank(s)) {
                     return true;
                 }
             } else if (param instanceof Double) {
-                Double var7 = (Double)param;
+                Double var7 = (Double) param;
             } else if (param instanceof Float) {
-                Float var8 = (Float)param;
+                Float var8 = (Float) param;
             } else if (param instanceof Long) {
-                Long var9 = (Long)param;
+                Long var9 = (Long) param;
             } else if (param instanceof Boolean) {
-                Boolean var10 = (Boolean)param;
+                Boolean var10 = (Boolean) param;
             } else if (param instanceof Date) {
-                Date var11 = (Date)param;
+                Date var11 = (Date) param;
             } else if (param instanceof LocalDateTime) {
-                LocalDateTime var12 = (LocalDateTime)param;
+                LocalDateTime var12 = (LocalDateTime) param;
             } else {
                 if (param == null) {
                     return true;
                 }
 
                 if (param instanceof String[]) {
-                    String[] b = (String[])((String[])param);
+                    String[] b = (String[]) ((String[]) param);
                     if (b.length == 0) {
                         return true;
                     }
                 } else if (param instanceof Integer[]) {
-                    Integer[] b = (Integer[])((Integer[])param);
+                    Integer[] b = (Integer[]) ((Integer[]) param);
                     if (b.length == 0) {
                         return true;
                     }
                 } else if (param instanceof Double[]) {
-                    Double[] b = (Double[])((Double[])param);
+                    Double[] b = (Double[]) ((Double[]) param);
                     if (b.length == 0) {
                         return true;
                     }
                 } else if (param instanceof Float[]) {
-                    Float[] b = (Float[])((Float[])param);
+                    Float[] b = (Float[]) ((Float[]) param);
                     if (b.length == 0) {
                         return true;
                     }
                 } else if (param instanceof Long[]) {
-                    Long[] b = (Long[])((Long[])param);
+                    Long[] b = (Long[]) ((Long[]) param);
                     if (b.length == 0) {
                         return true;
                     }
                 } else if (param instanceof Boolean[]) {
-                    Boolean[] b = (Boolean[])((Boolean[])param);
+                    Boolean[] b = (Boolean[]) ((Boolean[]) param);
                     if (b.length == 0) {
                         return true;
                     }
                 } else if (param instanceof Date[]) {
-                    Date[] b = (Date[])((Date[])param);
+                    Date[] b = (Date[]) ((Date[]) param);
                     if (b.length == 0) {
                         return true;
                     }
                 } else if (param instanceof LocalDateTime[]) {
-                    LocalDateTime[] b = (LocalDateTime[])((LocalDateTime[])param);
+                    LocalDateTime[] b = (LocalDateTime[]) ((LocalDateTime[]) param);
                     if (b.length == 0) {
                         return true;
                     }
@@ -194,8 +194,8 @@ public class CommonUtils {
         String param = "";
 
         String urlNameString;
-        for(Iterator it = paramMap.keySet().iterator(); it.hasNext(); param = param + urlNameString + "=" + paramMap.get(urlNameString) + "&") {
-            urlNameString = (String)it.next();
+        for (Iterator it = paramMap.keySet().iterator(); it.hasNext(); param = param + urlNameString + "=" + paramMap.get(urlNameString) + "&") {
+            urlNameString = (String) it.next();
         }
 
         try {
@@ -210,13 +210,13 @@ public class CommonUtils {
             Map<String, List<String>> map = connection.getHeaderFields();
             Iterator var10 = map.keySet().iterator();
 
-            while(var10.hasNext()) {
-                String key = (String)var10.next();
+            while (var10.hasNext()) {
+                String key = (String) var10.next();
                 System.out.println(key + "--->" + map.get(key));
             }
 
             String line;
-            for(in = new BufferedReader(new InputStreamReader(connection.getInputStream())); (line = in.readLine()) != null; result = result + line) {
+            for (in = new BufferedReader(new InputStreamReader(connection.getInputStream())); (line = in.readLine()) != null; result = result + line) {
             }
         } catch (Exception var20) {
             var20.printStackTrace();
@@ -235,18 +235,18 @@ public class CommonUtils {
     }
 
     public static <T, V> List<V> emptyCondThenReturnEmptyList(List<T> condList, Supplier<List<V>> fun) {
-        return (List)(CollectionUtils.isEmpty(condList) ? new ArrayList() : (List)fun.get());
+        return (List) (CollectionUtils.isEmpty(condList) ? new ArrayList() : (List) fun.get());
     }
 
     public static <T, V> List<V> emptyCondThenReturnEmptyList(String str, Supplier<List<V>> fun) {
-        return (List)(StringUtils.isBlank(str) ? new ArrayList() : (List)fun.get());
+        return (List) (StringUtils.isBlank(str) ? new ArrayList() : (List) fun.get());
     }
 
     public static <T, V> List<V> emptyCondThenReturnEmptyList(Object obj, Supplier<List<V>> fun) {
         if (obj == null) {
             return new ArrayList();
         } else {
-            return obj instanceof String ? emptyCondThenReturnEmptyList(obj.toString(), fun) : (List)fun.get();
+            return obj instanceof String ? emptyCondThenReturnEmptyList(obj.toString(), fun) : (List) fun.get();
         }
     }
 }

@@ -10,12 +10,13 @@ public class UUIDUtils {
 
     /**
      * 去掉-的uuid  32 位长度
+     *
      * @return
      */
-    public static String getUUID(){
+    public static String getUUID() {
         UUID uuid = UUID.randomUUID();
 
-        String randomString  = uuid.toString().replace("-","");
+        String randomString = uuid.toString().replace("-", "");
 
         return randomString;
 

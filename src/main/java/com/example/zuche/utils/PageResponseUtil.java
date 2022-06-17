@@ -68,7 +68,7 @@ public class PageResponseUtil {
         } else if (!(o instanceof PageResponseUtil)) {
             return false;
         } else {
-            PageResponseUtil other = (PageResponseUtil)o;
+            PageResponseUtil other = (PageResponseUtil) o;
             return other.canEqual(this);
         }
     }

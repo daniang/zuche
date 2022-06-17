@@ -4,8 +4,8 @@ spring:
       primary: study
       datasource:
         study:
-#          url: jdbc:p6spy:mysql://116.62.165.204:3306/study?useUnicode=false&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true&rewriteBatchedStatements=true&autoReconnect=true&failOverReadOnly=false
-#          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+          #          url: jdbc:p6spy:mysql://116.62.165.204:3306/study?useUnicode=false&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true&rewriteBatchedStatements=true&autoReconnect=true&failOverReadOnly=false
+          #          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
           username: root
           password: cq520221
           url: jdbc:mysql://116.62.165.204:3306/study?useUnicode=false&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8

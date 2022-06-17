@@ -20,7 +20,7 @@ public class Minio {
     @Value("${minio.SecretKey}")
     public String SecretKey;
 
-     /*文件夹*/
-    public  String BucketName = "file";
+    /*文件夹*/
+    public String BucketName = "file";
 
 }

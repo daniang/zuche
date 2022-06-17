@@ -60,7 +60,6 @@ public class Users extends Model<Users> {
     private Set<Permissions> permissions;
 
 
-
     @Override
     public Serializable pkVal() {
         return this.id;

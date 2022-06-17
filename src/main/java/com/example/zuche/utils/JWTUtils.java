@@ -46,17 +46,16 @@ public class JWTUtils {
     //检测token是否好使
 
     @Test
-    public void parse(){
+    public void parse() {
         String token = createToken(12l);
         Jwt parse = Jwts.parser().setSigningKey(jwtToken).parse(token);
 
-        Map<String ,Object> body = (Map<String, Object>) parse.getBody();
+        Map<String, Object> body = (Map<String, Object>) parse.getBody();
 
         System.out.println(body.get("userId"));
         System.out.println(parse);
 
     }
-
 
 
 }

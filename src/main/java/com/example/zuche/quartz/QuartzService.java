@@ -27,7 +27,7 @@ public class QuartzService implements InitializingBean {
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
 
-//    @PostConstruct
+    //    @PostConstruct
 //    public void taskInit() {
 //        log.info("=================系统初始化加载定时任务开始===========================");
 //        try {
@@ -48,7 +48,7 @@ public class QuartzService implements InitializingBean {
 //        }
 //    }
     @Override
-    public void afterPropertiesSet()  {
+    public void afterPropertiesSet() {
         log.info("=================系统初始化加载定时任务开始=====================");
         try {
             Scheduler scheduler = schedulerFactoryBean.getScheduler();
@@ -57,7 +57,7 @@ public class QuartzService implements InitializingBean {
 
             CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(CRON_TIME);
             CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity(triggerKey).withSchedule(cronScheduleBuilder).build();
-            scheduler.scheduleJob(jobDetail,cronTrigger);
+            scheduler.scheduleJob(jobDetail, cronTrigger);
 //            scheduler.start();
         } catch (Exception e) {
             log.info("======================初始化加载定时任务失败====================={}", e);

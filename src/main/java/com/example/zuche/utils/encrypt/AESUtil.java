@@ -47,20 +47,21 @@ public class AESUtil {
 
     /**
      * 解密
+     *
      * @param encrypted 需要解密的参数
      * @return
      * @throws Exception
      */
-    public static String decrytByAES(String encrypted) throws Exception{
+    public static String decrytByAES(String encrypted) throws Exception {
         //获取Cipher
         Cipher cipher = Cipher.getInstance(transformation);
 
         //生成密钥
-        SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(),algorithm);
+        SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), algorithm);
         //指定模式(解密)和密钥
         //创建初始化向量
         IvParameterSpec iv = new IvParameterSpec(key.getBytes());
-        cipher.init(Cipher.DECRYPT_MODE,keySpec,iv);
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, iv);
         //解密
         byte[] bytes = cipher.doFinal(Base64Util.decryBASE64(encrypted));
 
@@ -72,10 +73,10 @@ public class AESUtil {
         String str = "ILoveYouILoveYou";
 
         String encryptByAES = encryptByAES(str);
-        log.info("encryptByAES = {}" ,encryptByAES);
+        log.info("encryptByAES = {}", encryptByAES);
 
         String decrytByAES = decrytByAES(encryptByAES);
-        log.info("decryByAes = {}" ,decrytByAES);
+        log.info("decryByAes = {}", decrytByAES);
 
 
     }

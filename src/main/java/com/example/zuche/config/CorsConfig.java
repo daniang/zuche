@@ -6,18 +6,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * 添加一个CORS跨域配置类，在工程下新建config包并添加一个CorsConfig 配置类
- *
  */
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
 
     /**
-    * @Param: 
-    * @return: 
-    * @Author: chengzhang
-    * @Date: 2021/12/23
-    */
+     * @Param:
+     * @return:
+     * @Author: chengzhang
+     * @Date: 2021/12/23
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         //允许跨域访问的路径

@@ -11,7 +11,7 @@
     </select>
 
     <resultMap id="genderCount" type="java.util.HashMap">
-        <result column="is_fond" property="key" javaType="java.lang.String" />
-        <result column="count" property="value" javaType="java.lang.Object" />
+        <result column="is_fond" property="key" javaType="java.lang.String"/>
+        <result column="count" property="value" javaType="java.lang.Object"/>
     </resultMap>
 </mapper>

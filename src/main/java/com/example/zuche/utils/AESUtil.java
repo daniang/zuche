@@ -78,8 +78,9 @@ public class AESUtil {
 
     /**
      * 解密
+     *
      * @param content 待解密内容
-     * @param key 解密的秘钥
+     * @param key     解密的秘钥
      * @return
      */
     public static String decrypt(String content, String key) {
@@ -124,19 +125,16 @@ public class AESUtil {
         return "解密失败";
     }
 
-    public static String getSalt(){
-        SecureRandom  random = new SecureRandom();
+    public static String getSalt() {
+        SecureRandom random = new SecureRandom();
 
-        byte bytes[]  = new byte[15];
+        byte bytes[] = new byte[15];
 
         random.nextBytes(bytes);
 
         return encodeBase64String(bytes);
 
     }
-
-
-
 
 
 }

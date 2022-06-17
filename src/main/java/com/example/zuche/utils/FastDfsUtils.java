@@ -42,7 +42,7 @@ public class FastDfsUtils {
 
         ApplicationHome home = new ApplicationHome(getClass());
         File path = home.getSource().getParentFile();
-        log.info("path{}",path);
+        log.info("path{}", path);
 //        return perUrl + storePath.getFullPath();
         return storePath.getFullPath();
     }

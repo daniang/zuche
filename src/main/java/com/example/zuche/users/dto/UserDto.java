@@ -17,6 +17,6 @@ public class UserDto {
     private String account;
 
     @ApiModelProperty("密码")
-    private  String password;
+    private String password;
 
 }

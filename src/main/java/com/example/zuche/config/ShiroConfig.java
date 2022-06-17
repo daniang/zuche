@@ -95,7 +95,7 @@ public class ShiroConfig {
 
     //Filter 工厂，设置对应的过滤条件和跳转条件
     @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean shiroFilterFactoryBean( SecurityManager securityManager,FebsProperties febsProperties) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager, FebsProperties febsProperties) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 //
 //        ShiroProperties shiro = febsProperties.getShiro();

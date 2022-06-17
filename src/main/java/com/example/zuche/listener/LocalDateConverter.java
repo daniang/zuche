@@ -10,7 +10,7 @@ import com.example.zuche.utils.LocalDateTimeUtils;
 
 import java.time.LocalDate;
 
-public class LocalDateConverter implements Converter{
+public class LocalDateConverter implements Converter {
 
 
     public CellData convertToExcelData(LocalDate localDate) {
@@ -20,9 +20,6 @@ public class LocalDateConverter implements Converter{
         cellData.setData(LocalDateTimeUtils.localDateToDate(localDate));
         return cellData;
     }
-
-
-
 
 
 }

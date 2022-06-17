@@ -1,6 +1,5 @@
 package com.example.zuche.controller;
 
-import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import com.example.zuche.utils.FastDfsUtils;
 import com.example.zuche.utils.MinioUtils;
@@ -16,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("upload")
@@ -68,7 +68,7 @@ public class UploadController {
         if (file.isEmpty()) {
             throw new Exception("未传递文件");
         }
-        minioUtils.upload(file, bucketName,null);
+        minioUtils.upload(file, bucketName, null);
 
         return ResultVo.success();
     }
@@ -84,30 +84,63 @@ public class UploadController {
 
     @GetMapping("/downloadObject")
     public void downloadObject(HttpServletResponse response, String bucketName, String fileName) {
-        minioUtils.downloadObject(response , bucketName,fileName);
+        minioUtils.downloadObject(response, bucketName, fileName);
     }
 
     @GetMapping("/getUrl")
-    public ResultVo<String> getUrl( ) {
+    public ResultVo<String> getUrl() {
 
         return ResultVo.success(minioUtils.getUrl());
 
     }
 
-    @GetMapping("/shiPing")
-    public ResultVo<String> shiPing( Integer streamType,Integer channelNo,Integer dataType) {
-        log.info("shiPing参数{},{},{}",streamType,channelNo,dataType);
-        String post = HttpUtil.post("http://172.30.1.104:3014/api/video/pull?deviceId=013304521793&ip=120.202.27.102&port=9918&channelNo="+channelNo+"&dataType="+dataType+"&streamType="+streamType, new HashMap<>());
-        System.out.println(post);
+    @GetMapping(value = "pullVideoStream")
+    ResultVo<Void> pullVideoStream(String host, String ip, String port, String deviceId, String channelNo, String streamType) {
+
+        //POST http://172.30.1.61:30012/api/video/pull?deviceId=013304521793&ip=120.202.27.102&port=9918&channelNo=1&dataType=0&streamType=0
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("ip", ip);
+        map.put("port", port);
+        map.put("deviceId", deviceId);
+        map.put("channelNo", channelNo);
+        map.put("streamType", streamType);
+        map.put("dataType", 0);
+        String post = HttpUtil.post(host + "/api/video/pull", map);
         return ResultVo.success(post);
-
     }
-    @GetMapping("/shiPing2")
-    public ResultVo<String> shiPing2(Integer streamType ) {
-        String post = HttpUtil.post("http://172.30.1.104:3014/api/video/pull?deviceId=013304521793&ip=120.202.27.102&port=9918&channelNo=2&dataType=0&streamType=0", new HashMap<>());
+
+    @GetMapping(value = "closedVideoStream")
+    ResultVo<Void> closedVideoStream(String host, String deviceId, String channelNo) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("deviceId", deviceId);
+        map.put("channelNo", channelNo);
+        String post = HttpUtil.post(host + "/api/video/stop", map);
         return ResultVo.success(post);
-
     }
 
+
+    @GetMapping(value = "/replay")
+    public ResultVo<Void> replay(String ip, Integer port, String deviceId, Integer channelNo, String startTime, String endTime) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("ip", ip);
+        map.put("port", port);
+        map.put("deviceId", deviceId);
+        map.put("channelNo", channelNo);
+        map.put("startTime", startTime);
+        map.put("endTime", endTime);
+        String get = HttpUtil.get(" http://172.30.1.61:30012/api/video/replay", map);
+        return ResultVo.success(get);
+    }
+
+    @GetMapping(value = "/replayStop")
+    public ResultVo<Void> replayStop(String deviceId, Integer channelNo) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("deviceId", deviceId);
+        map.put("channelNo", channelNo);
+        String get = HttpUtil.get(" http://172.30.1.61:30012/api/video/replayStop", map);
+        return ResultVo.success(get);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.zuche.refondmoney.pojo;
 
 import java.math.BigDecimal;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -19,7 +20,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author chengzhang
@@ -32,7 +33,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class RefondMoney extends Model<RefondMoney> {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 主键
@@ -73,9 +74,10 @@ public class RefondMoney extends Model<RefondMoney> {
 
     /**
      * 单次新增
+     *
      * @param dto
      */
-    public RefondMoney(RefondAddDto dto){
+    public RefondMoney(RefondAddDto dto) {
         this.name = dto.getName();
         this.eventId = dto.getEventId();
         this.money = dto.getMoney();

@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author chengzhang
@@ -22,7 +22,7 @@ public interface IRefondMoneyService extends IService<RefondMoney> {
 
     List<RefondMoneyVo> getList();
 
-    List<RefondMoneyExcelVo>  downloadExcel();
+    List<RefondMoneyExcelVo> downloadExcel();
 
     List<RefondMoneyVo> getDetails(RefondMoneyDto dto);
 }

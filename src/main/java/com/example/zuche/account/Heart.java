@@ -31,6 +31,7 @@ public class Heart extends JFrame {
         // 设置窗口显示
         this.setVisible(true);
     }
+
     @Override
     public void paint(Graphics g) {
         double x, y, r;

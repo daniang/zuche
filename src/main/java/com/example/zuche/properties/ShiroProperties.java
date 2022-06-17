@@ -7,10 +7,10 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
 /**
-*@date: 2022/1/27
-*@param: 
-* @desc:
-*/
+ * @date: 2022/1/27
+ * @param:
+ * @desc:
+ */
 @Data
 public class ShiroProperties {
 

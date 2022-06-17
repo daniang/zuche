@@ -17,8 +17,4 @@ public class AccountListDto {
     private String name;
 
 
-
-
-
-
 }

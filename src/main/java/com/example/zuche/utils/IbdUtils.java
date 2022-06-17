@@ -547,8 +547,8 @@ public class IbdUtils {
     public static List<String> convertId(String imei) {
         List<String> imeiList = new ArrayList<>();
         if (StringUtils.isNotBlank(imei)) {
-            imeiList = Stream.of(imei.replace(" ", ",").split(",")).filter(StringUtils::isNotBlank).map(m->{
-                if (m.length()==15) {
+            imeiList = Stream.of(imei.replace(" ", ",").split(",")).filter(StringUtils::isNotBlank).map(m -> {
+                if (m.length() == 15) {
                     return m.substring(3);
                 }
                 return m;

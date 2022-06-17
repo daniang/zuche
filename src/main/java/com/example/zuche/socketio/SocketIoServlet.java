@@ -35,7 +35,7 @@ public class SocketIoServlet extends HttpServlet {
     public static void main(String[] args) {
         SocketIoNamespace namespace = mSocketIoServer.namespace("/");
 
-        namespace.on("connection",new Emitter.Listener() {
+        namespace.on("connection", new Emitter.Listener() {
 
 
             @Override

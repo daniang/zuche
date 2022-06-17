@@ -1,7 +1,9 @@
 package com.example.zuche.event.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import cn.hutool.http.HttpUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.zuche.event.dto.DeleteDto;
 import com.example.zuche.event.dto.EventAddDto;
@@ -11,32 +13,22 @@ import com.example.zuche.event.pojo.Event;
 import com.example.zuche.event.service.IEventService;
 import com.example.zuche.event.vo.EventVo;
 import com.example.zuche.exception.CustomizedErrorException;
+import com.example.zuche.refondmoney.vo.RefondMoneyVo;
 import com.example.zuche.utils.PageResponse;
 import com.example.zuche.utils.UUIDUtils;
 import com.example.zuche.vo.ResultVo;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.session.mgt.eis.SessionDAO;
-import org.apache.shiro.subject.Subject;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.stereotype.Controller;
-
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 /**
  * <p>
@@ -78,11 +70,27 @@ public class EventController {
         return ResultVo.success();
     }
 
-    @RequiresPermissions("query")
+    //    @RequiresPermissions("query")
     @PostMapping("getAllEvent")
     @ApiOperation("查看所有的事件")
-    public ResultVo<PageResponse<EventVo>> getAllEvent(@Valid @RequestBody EventDto dto) {
+    public ResultVo<PageResponse<EventVo>> getAllEvent(@RequestBody EventDto dto) {
         log.info("getAllEvent");
+
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("orgId", 0);
+//        map.put("carNo", 12346);
+//        map.put("token", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaGVuZ3poYW5nIiwidXNlcklkIjoiZjc5MDAxYTJhYjQ2NDFlZTkzN2E0ODY4ZmNjMGY1N2MiLCJjcmVhdGVkIjoxNjUzNDc2MjAzNzUzLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5Ijoic2EifV0sImV4cCI6MTY1MzY1NjIwM30.Ib_0Xf2Yt8vpxUmWrG8TcLvT61fw-OqYrk07hbZ64II");
+////        String post = HttpUtil.post("http://192.168.201.49:8081" + "/refondmoney/getList", map);
+//        String get = HttpUtil.get("http://192.168.201.49:8221/caoqiong" + "/refondmoney/getList");
+////        String post = HttpUtil.post("https://api-carlink-sit.starlinkware.com/api" + "/carManage/list", map);
+//
+//
+//        JSONArray data = JSON.parseObject(get).getJSONArray("data");
+//
+//        List<RefondMoneyVo> refondMoneyVos = data.toJavaList(RefondMoneyVo.class);
+//
+//        data.toJavaList(RefondMoneyVo.class);
+
 
 //        List<Event> list = eventService.list(new QueryWrapper<Event>().lambda().like(!StringUtils.isEmpty(dto.getEventName()), Event::getName, dto.getEventName()));
 //        List<EventVo> collect = list.stream().map(x -> modelMapper.map(x, EventVo.class)).collect(Collectors.toList());

@@ -3,6 +3,7 @@ package com.example.zuche.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,8 +13,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 运用高德api的一些方法
@@ -25,25 +30,26 @@ import java.util.Map;
 @Slf4j
 public class GaodeUtils {
 
+
     //我的生活的key
     private static final String GAO_DE_KEY = "bcba517f00c6981dbcbdf3a40e4c52c4";
 
 
-    public static void main(String[] args) throws IOException {
-
-
+//    public static void main(String[] args) throws IOException {
+//
+//
 //        String str = geo("武汉市新洲区联盟里118号|北京市朝阳区阜通东大街6号");
 //        log.info("str={}", str);
-
-        String lng = "116.310003";
-
-        String lat = "39.991957";
-
-        String address = address(lng, lat);
-
-        log.info("address={}", address);
-
-    }
+//
+//        String lng = "116.310003";
+//
+//        String lat = "39.991958";
+//
+//        String address = address(lng, lat);
+//
+//        log.info("address={}", address);
+//
+//    }
 
 
     /**
@@ -121,6 +127,72 @@ public class GaodeUtils {
 //        }
 //
 //        return null;
+    }
+
+
+    public static void main(String[] args) {
+        // 创建读写锁
+        final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+        // 创建读锁
+        final ReentrantReadWriteLock.ReadLock readLock = readWriteLock.readLock();
+        // 创建写锁
+        final ReentrantReadWriteLock.WriteLock writeLock = readWriteLock.writeLock();
+        // 线程池
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 5, 0, TimeUnit.SECONDS,
+                new LinkedBlockingDeque<>(100));
+        // 启动新线程执行读任务
+        executor.submit(() -> {
+            // 加锁操作
+            readLock.lock();
+            try {
+                System.out.println("执行读锁1：" + LocalDateTime.now());
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                readLock.unlock();
+            }
+        });
+
+        // 启动新线程执行读任务2
+        executor.submit(() -> {
+            readLock.lock();
+            try {
+                System.out.println("执行读锁2：" + LocalDateTime.now());
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                readLock.unlock();
+            }
+        });
+
+        // 启动新线程执行写操作
+        executor.submit(() -> {
+            writeLock.lock();
+            try {
+                System.out.println("执行写锁1：" + LocalDateTime.now());
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                writeLock.unlock();
+            }
+        });
+
+        // 启动新线程执行写操作2
+        executor.submit(() -> {
+            writeLock.lock();
+            try {
+                System.out.println("执行写锁2：" + LocalDateTime.now());
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                writeLock.unlock();
+            }
+        });
+        executor.shutdown();
     }
 
 
