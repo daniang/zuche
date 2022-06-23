@@ -15,3 +15,7 @@ minio:
   AccessKey: minioadmin
   SecretKey: minioadmin
 
+mail:
+  hostname: mailer@mail.com
+  port: 9000
+  from: mailer@mail.com

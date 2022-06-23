@@ -2,6 +2,7 @@ package com.example.zuche.users.controller;
 
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.example.zuche.config.ConfigProperties;
 import com.example.zuche.myexception.BizException;
 import com.example.zuche.postgresql.pojo.UserTest;
 import com.example.zuche.postgresql.service.IUserTestService;
@@ -117,6 +118,21 @@ public class UsersController {
         List<UserTest> list = userTestService.list();
 
         return ResultVo.success(list);
+
+    }
+
+
+    @Resource
+    private ConfigProperties configProperties;
+
+    @GetMapping("/get")
+    @ApiOperation("获取配置文件")
+    public String get() {
+
+        System.out.println("configProperties = " + configProperties.getFrom());
+        System.out.println("configProperties.getHostName() = " + configProperties.getHostName());
+        System.out.println("configProperties.getPort() = " + configProperties.getPort());
+        return configProperties.getHostName() + " hello " ;
 
     }
 }

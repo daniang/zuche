@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author MrBird
  */
 @Data
-@SpringBootConfiguration(proxyBeanMethods = false)
+@SpringBootConfiguration
 @ConfigurationProperties(prefix = "febs")
 public class FebsProperties {
 
