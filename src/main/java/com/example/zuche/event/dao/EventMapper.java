@@ -21,5 +21,6 @@ import java.util.List;
 @Mapper
 public interface EventMapper extends BaseMapper<Event> {
 
+    //
     List<Event> getAllEvent(IPage<EventVo> page, @Param("dto") EventDto dto);
 }
