@@ -106,6 +106,13 @@ public class EventController {
         return ResultVo.success();
     }
 
+    @GetMapping("testNginx")
+    public String testNginx() {
+        log.info("这是一个nginxtest");
+
+        return "这是一个nginxtest";
+    }
+
 
 }
 
