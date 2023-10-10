@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.zuche.tbltynlgeneralcode.dao.TblTynlGeneralCodeMapper">
+
+    <select id="selectParam" resultType="com.example.zuche.tbltynlgeneralcode.pojo.TblTynlGeneralCode">
+        select * from tbl_tynl_general_code
+        <where>
+            (CODE_VALUE = #{codeValue}
+             and PRO_ID = #{proId}  ) or (CODE_ID = #{codeId})
+        </where>
+    </select>
+</mapper>
