@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 import com.example.zuche.event.dto.EventAddDto;
 import com.example.zuche.utils.CommonUtils;
@@ -15,6 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.junit.Test;
 import org.springframework.util.StringUtils;
 
 /**
@@ -76,4 +79,8 @@ public class Event extends Model<Event> {
             this.isDelete = dto.getDelete();
         }
     }
+
+
+
+
 }

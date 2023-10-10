@@ -33,6 +33,8 @@ public class AESUtil {
      */
     public static final String SIGN_ALGORITHMS = "SHA1PRNG";
 
+
+    private static final String KEY = "2020123016040000";
     /**
      * 加密
      *
@@ -135,6 +137,9 @@ public class AESUtil {
 
     }
 
+    public static void main(String[] args) {
+        System.out.println(11111);
+    }
 
 
 

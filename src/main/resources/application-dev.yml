@@ -52,8 +52,8 @@ mybatis-plus:
     cache-enabled: false
     map-underscore-to-camel-case: true
     call-setters-on-nulls: true
-    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
-  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       id-type: auto

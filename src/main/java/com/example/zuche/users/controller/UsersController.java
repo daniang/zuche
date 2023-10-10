@@ -1,9 +1,13 @@
 package com.example.zuche.users.controller;
 
 
+import com.easemob.im.server.EMService;
+import com.easemob.im.server.model.EMUser;
+import com.example.zuche.imsdk.UserService;
 import com.example.zuche.myexception.BizException;
 import com.example.zuche.users.dto.UserDto;
 import com.example.zuche.users.pojo.Users;
+import com.example.zuche.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +17,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +35,9 @@ import java.util.List;
 @Slf4j
 public class UsersController {
 
+
+    @Resource
+    private EMService emService;
 
     @ApiOperation("登录")
     @PostMapping("/login")
@@ -98,6 +106,44 @@ public class UsersController {
 
         return userList;
 
+    }
+
+    @PostMapping("/addEasemob")
+    public ResultVo addEasemob() {
+
+        EMUser user = emService.user().create("chengzhang0516cs", "Cq520221").block();
+
+        return ResultVo.success(user);
+
+    }
+
+
+    public static void main(String[] args) {
+
+        Integer jump = jump(100);
+
+        System.out.println(jump);
+
+
+    }
+
+    /**
+     *
+     * @param num 青蛙跳的等级  num级
+     * @return
+     */
+    public static Integer jump(Integer num) {
+
+        if (num ==1 ) {
+            return 1;
+        }
+
+        if (num == 2) {
+            return 2 ;
+        }
+
+
+        return jump(num - 1 ) + jump(num -1);
     }
 
 }

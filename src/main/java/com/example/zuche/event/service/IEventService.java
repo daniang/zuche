@@ -18,4 +18,6 @@ import com.example.zuche.utils.PageResponse;
 public interface IEventService extends IService<Event> {
 
     PageResponse<EventVo> getAllEvent(EventDto dto);
+
+    void test();
 }

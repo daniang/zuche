@@ -9,10 +9,14 @@ import com.example.zuche.event.dao.EventMapper;
 import com.example.zuche.event.service.IEventService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.zuche.event.vo.EventVo;
+import com.example.zuche.exception.CustomizedErrorException;
 import com.example.zuche.utils.PageResponse;
 import com.example.zuche.utils.PageResponseUtil;
+import com.example.zuche.utils.UUIDUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +45,23 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
         page.setRecords(collect);
 
         return PageResponseUtil.getPageResponse(page);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void test() {
+        Event event1 = new Event("4", "test1", LocalDate.now(), 0);
+        Event event2 = new Event("5", "test2", LocalDate.now(), 0);
+
+        event1.insert();
+        event2.insert();
+
+        try {
+            int i4 = 1 / 0;
+        }catch (Exception e) {
+            throw new CustomizedErrorException("插入失败");
+        }
+
+
     }
 }

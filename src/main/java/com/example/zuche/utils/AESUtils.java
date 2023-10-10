@@ -2,6 +2,7 @@ package com.example.zuche.utils;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import sun.misc.BASE64Decoder;
 
 import javax.crypto.Cipher;
@@ -26,6 +27,7 @@ public class AESUtils {
 //    private static final String ALGORITHMSTR = "AES/ECB/PKCS5Padding";
     private static final String ALGORITHMSTR = "AES/CBC/PKCS7Padding";
 
+
     public static void main(String[] args) throws Exception {
         String content = "url：findNames.action";
         System.out.println("加密前：" + content);
@@ -40,12 +42,27 @@ public class AESUtils {
         System.out.println("解密后：" + decrypt);
     }
 
+    @Test
+    public void Test() throws Exception {
+        String content = "url：findNames.action";
+        System.out.println("加密前：" + content);
+
+        System.out.println("加密密钥和解密密钥：" + KEY);
+
+        String encrypt =AESUtils.aesEncrypt(content, KEY);
+        System.out.println("加密后：" + encrypt);
+
+        String decrypt = AESUtils.aesDecrypt("iYNshO5tbOnUzdXb7gJrMw==\n", KEY);
+
+        System.out.println("解密后：" + decrypt);
+    }
+
     /**
      * base 64 encode
      * @param bytes 待编码的byte[]
      * @return 编码后的base 64 code
      */
-    private static String base64Encode(byte[] bytes){
+    public static String base64Encode(byte[] bytes){
         return Base64.encodeBase64String(bytes);
     }
 
@@ -55,7 +72,7 @@ public class AESUtils {
      * @return 解码后的byte[]
      * @throws Exception 抛出异常
      */
-    private static byte[] base64Decode(String base64Code) throws Exception{
+    public static byte[] base64Decode(String base64Code) throws Exception{
         return StringUtils.isEmpty(base64Code) ? null : new BASE64Decoder().decodeBuffer(base64Code);
     }
 
@@ -66,7 +83,7 @@ public class AESUtils {
      * @param encryptKey 加密密钥
      * @return 加密后的byte[]
      */
-    private static byte[] aesEncryptToBytes(String content, String encryptKey) throws Exception {
+    public static byte[] aesEncryptToBytes(String content, String encryptKey) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");
         kgen.init(128);
         Cipher cipher = Cipher.getInstance(ALGORITHMSTR);
@@ -83,7 +100,7 @@ public class AESUtils {
      * @param encryptKey 加密密钥
      * @return 加密后的base 64 code
      */
-    private static String aesEncrypt(String content, String encryptKey) throws Exception {
+    public static String aesEncrypt(String content, String encryptKey) throws Exception {
         return base64Encode(aesEncryptToBytes(content, encryptKey));
     }
 
@@ -94,7 +111,7 @@ public class AESUtils {
      * @param decryptKey 解密密钥
      * @return 解密后的String
      */
-    private static String aesDecryptByBytes(byte[] encryptBytes, String decryptKey) throws Exception {
+    public static String aesDecryptByBytes(byte[] encryptBytes, String decryptKey) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");
         kgen.init(128);
 
@@ -112,9 +129,10 @@ public class AESUtils {
      * @param decryptKey 解密密钥
      * @return 解密后的string
      */
-    private static String aesDecrypt(String encryptStr, String decryptKey) throws Exception {
+    public static String aesDecrypt(String encryptStr, String decryptKey) throws Exception {
         return StringUtils.isEmpty(encryptStr) ? null : aesDecryptByBytes(base64Decode(encryptStr), decryptKey);
     }
+
 
 
 }

@@ -2,6 +2,8 @@ package com.example.zuche.controller;
 
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
+import cn.hutool.system.UserInfo;
+import com.example.zuche.users.pojo.Users;
 import com.example.zuche.utils.FastDfsUtils;
 import com.example.zuche.utils.MinioUtils;
 import com.example.zuche.vo.ResultVo;
@@ -31,11 +33,10 @@ public class UploadController {
     private MinioUtils minioUtils;
 
 
-    @RequiresAuthentication
-    @ResponseBody
+
     @PostMapping("/upload")
     @SneakyThrows
-    public String upload(@RequestParam("file") MultipartFile file) {
+    public String upload(@RequestParam("file") MultipartFile file, Users userInfo) {
         if (file.isEmpty()) {
             return "上传失败，请选择文件";
         }

@@ -129,8 +129,8 @@ public class CodeGenerator {
 //        自定义继承的Controller类全称，带包名
         //strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         //需要包含的表名，允许正则表达式
-//        strategy.setInclude(scanner("表名"));
-        strategy.setInclude("account");
+        strategy.setInclude(scanner("表名"));
+//        strategy.setInclude("account");
         //自定义基础的Entity类，公共字段
         //strategy.setSuperEntityColumns("id");
         //驼峰转连字符

@@ -66,4 +66,7 @@ public class Users extends Model<Users> {
         return this.id;
     }
 
+
+
 }
+
